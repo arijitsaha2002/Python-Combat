@@ -1,0 +1,154 @@
+.heading {
+  font-size: 40px;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(27, 194, 194);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.avatar {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+}
+
+
+
+/*###Desktops, big landscape tablets and laptops(Large, Extra large)####*/
+@media screen and (min-width: 1024px) {
+  .maze {
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    height: 90vh;
+    background-color: black;
+  }
+
+  .right {
+    width: 40vw;
+    height: 90vh;
+    background-color: rgb(231, 236, 236);
+    overflow: hidden;
+  }
+
+  #output {
+    width: 40vw;
+    line-height: 20px;
+    padding-left: 30px;
+    padding-bottom: 100vh;
+    overflow: scroll;
+    min-height: 100vh;
+  }
+  #canvas {
+    width: min(50vw,89vh);
+    height: min(50vw,89vh);
+    background-color:#c3e8de;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+}
+
+/*###Tablet(medium)###*/
+@media screen and (min-width : 768px) and (max-width : 1023px) {
+  .right {
+    width: 50vw;
+    height: 90vh;
+    background-color: rgb(231, 236, 236);
+    overflow: hidden;
+  }
+
+  .maze {
+    width: 50vw;
+    height: 90vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+  }
+
+  #output {
+    width: 50vw;
+    line-height: 20px;
+    padding-left: 30px;
+    padding-bottom: 100vh;
+    overflow: scroll;
+    min-height: 100vh;
+  }
+
+  #canvas {
+    width: min(45vw,89vh);
+    height: min(45vw,89vh);
+    background-color:#c3e8de;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
+/*### Smartphones (portrait and landscape)(small)### */
+@media screen and (min-width : 0px) and (max-width : 767px) {
+  .right {
+    width: 100vw;
+    height: 120vw;
+    background-color: rgb(231, 236, 236);
+    overflow: hidden;
+  }
+
+  .maze {
+    width: 100vw;
+    height: 120vw;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+  }
+
+  #output {
+    width: 100vw;
+    line-height: 20px;
+    padding-left: 30px;
+    padding-bottom: 100vh;
+    overflow: scroll;
+    min-height: 100vh;
+  }
+
+  #canvas {
+    width: min(95vw,115vh);
+    height: min(95vw,115vh);
+    background-color:#c3e8de;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
+
+.btns {
+  border-radius: 3px;
+  border-color: brown;
+  background-color: ghostwhite;
+  color: black;
+  border-style: solid;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.body {
+  display: flex;
+  justify-content: space-evenly;
+  overflow: visible;
+  width: 100vw;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.descriptionBtn{
+  border-style: none;
+  padding-top: 8px;
+  /* background-color: #0250c4; */
+}

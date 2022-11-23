@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="../codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="../codemirror/theme/dracula.css">
+    <script src="../codemirror/mode/python/python.js"></script>
+    <script src="../codemirror/addon/hint/show-hint.js"></script>
+    <script src="../codemirror/addon/hint/python-hint.js"></script>
+    <script src="../common/brython.js"></script>
+    <script src="../common/brython_stdlib.js"></script>
+    <script src="../common/jscript.js"></script>
+    <link rel="stylesheet" href="../codemirror/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="../common/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Python Combat</title>
+</head>
+
+<body onload="brython()">
+    <div style="display: none;">
+        <img id="right" src="../img/avatarRight.png" alt="The Scream">
+        <img id="left" src="../img/avatarLeft.png" alt="The Scream">
+        <img id="up" src="../img/avatarBack.png" alt="The Scream">
+        <img id="down" src="../img/avatarFront.png" alt="The Scream">
+        <img src="../img/background.png" id="background">
+        <img src="../img/coin.png" id="star">
+        <img src="../img/coin2.png" id="starB">
+        <img src="../img/coin1.png" id="starO">
+        <img src="../img/doors.png" id="door">
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-primary ">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" href="../Welcome/play.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="descriptionBtn  bg-primary text-light" onclick="description()">Description</button>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Chapters
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-dark" href="../Level_1/index.html">Chapter 1</a></li>
+                            <li><a class="dropdown-item text-dark" href="../Level_2/index.html">Chapter 2</a></li>
+                            <li><a class="dropdown-item text-dark" href="../Level_4/index.html">Chapter 4</a></li>
+                            <li><a class="dropdown-item text-dark" href="../Level_5/index.html">Chapter 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="body">
+
+        <div class="maze" style="background-color: brown;">
+            <canvas id="canvas">
+            </canvas>
+        </div>
+
+        <div class="right">
+            <button class="btns" style="margin-left: 30px;" id="run">Run</button>
+            <input type="file" id="upload" style="display: none;">
+            <button class="btns" id="uploadBtn">Upload</button>
+            <button class="btns" onclick="refresh()">Refresh</button>
+            <textarea id="editor"></textarea>
+            <textarea id="output" onkeydown="return false;"></textarea>
+        </div>
+
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../common/script.js"></script>
+    <script src="canvas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+
+<script type="text/python">
+    from browser import document
+    import browser
+    from browser import window , console
+    import traceback
+    doc = window.document
+
+    def isUp():
+        return window.isUp
+    def move_up():
+        for i in range(25):
+            window.movesX.append(0)
+            window.movesY.append(-1)
+    
+    def move_right():
+        for i in range(25):
+            window.movesX.append(2)
+            window.movesY.append(0)
+    
+    def move_left():
+        for i in range(25):
+            window.movesX.append(-2)
+            window.movesY.append(0)
+    
+    def move_down():
+        for i in range(25):
+            window.movesX.append(0)
+            window.movesY.append(1)
+            
+    def open_door():
+        window.movesX.append(3)
+        window.movesY.append(3)
+        
+    def show(e):
+        doc.getElementById('output').innerHTML = ''
+        window.drawMaze();
+        window.refresh();
+        try:
+            exec(window.editor.getValue())
+        except Exception as e :
+            var = traceback.format_exc()
+            print(var)
+        window.allMove();
+
+    
+    document['run'].bind("click",show)
+    </script>
+
+</html>

@@ -1,0 +1,73 @@
+.heading{
+  font-size: 40px;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(27, 194, 194);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.playbutton{
+  position: relative;
+  top: 60vh;
+  left: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  border-radius: 10px;
+  border: 10px;
+  border-color: black;
+  background-color: brown;
+  text-align: center;
+  color: wheat;
+  transition: .6s;
+}
+
+.playbutton:hover{
+  color: wheat;
+  font-size: 70px;
+}
+
+.mainbody{
+  background-image: url('../img/welcome.png'); 
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  background-position: top center;
+}
+
+.mycard{
+  width: 130px;
+  margin-top: 100px;
+  min-width: 120px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: rgb(64, 9, 115);
+}
+
+.mycardholder{
+  display: flex;
+  justify-content: space-evenly;
+  overflow: visible;
+  width: 100vw;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.mazebox{
+  height: 400px;
+  background-color: beige;
+}
+.avatar{
+  position: relative;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+}
+
