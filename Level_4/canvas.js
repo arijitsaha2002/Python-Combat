@@ -1,4 +1,7 @@
 refresh();
+/**
+ * Refreshes the Arena
+ */
 function refresh() {
     coins = [1, 1, 1, 1, 1, 1, 1, 1, 3]
     movesX = []
@@ -9,12 +12,20 @@ function refresh() {
     drawMaze();
     canvasDraw.drawImage(downMove, positionX - w / 2, positionY - h / 2, w, h);
 }
-
+/**
+ * Instructions
+ */
 function description() {
     swal("Instructions", "Here we go again!, But this time some coins won't disappear when visited once. Yellow coins get converted to orange, orange to blue and blue will be gone whenever it is visited and after all coins get disappeared you need to reach the door and yell open_door().\n You can also upload code file from your local device.\n Hints: You see that the maze has a loop. Use for loop to traverse the maze loop three times.");
 }
 
-function drawStar(i, X, Y) {
+/**
+ * Draws a coin
+ * @param {type of coin} i 
+ * @param {x position of coin} X 
+ * @param {Y position of coin} Y 
+ */
+function drawCoin(i, X, Y) {
     if (i == 1) {
         canvasDraw.drawImage(star, X - 10, Y - 5, 20, 10);
     }
@@ -25,6 +36,10 @@ function drawStar(i, X, Y) {
         canvasDraw.drawImage(document.getElementById("starB"), X - 10, Y - 5, 20, 10);
     }
 }
+
+/**
+ * Designs the Arena
+ */
 function drawMaze() {
     canvasDraw.drawImage(backgroundImg, 0, 0, 300, 150);
     canvasDraw.fillStyle = '#c3e8de';
@@ -54,18 +69,23 @@ function drawMaze() {
     canvasDraw.lineTo(45, 125);
     canvasDraw.closePath();
     canvasDraw.fill();
-    drawStar(coins[0], 75, 85);
-    drawStar(coins[1], 75, 110);
-    drawStar(coins[2], 125, 110);
-    drawStar(coins[3], 75, 60);
-    drawStar(coins[4], 125, 60);
-    drawStar(coins[5], 175, 60);
-    drawStar(coins[6], 175, 85);
-    drawStar(coins[7], 175, 110);
-    drawStar(coins[8], 225, 85);
+    drawCoin(coins[0], 75, 85);
+    drawCoin(coins[1], 75, 110);
+    drawCoin(coins[2], 125, 110);
+    drawCoin(coins[3], 75, 60);
+    drawCoin(coins[4], 125, 60);
+    drawCoin(coins[5], 175, 60);
+    drawCoin(coins[6], 175, 85);
+    drawCoin(coins[7], 175, 110);
+    drawCoin(coins[8], 225, 85);
     canvasDraw.drawImage(door, 282, 85 - 17, 20, 35);
 }
 
+/**
+ * Moves Mario slowly
+ * and also restricts it 
+ * from stepping out of maze
+ */
 function iterator() {
     if (movesX[0] == null) {
         clearInterval(myIterator);
@@ -156,17 +176,25 @@ function iterator() {
     }
 }
 
-
+/**
+ * Clear the previous Mario image by pasting a rectangle on it
+ */
 function clear() {
     drawMaze();
 }
 
-
+/**
+ * Calls iterator in intervals
+ */
 function allMove() {
     myIterator = setInterval(iterator, 30);
 }
 
-
+/**
+ * openDoor function which shows success and error pop ups
+ * and redirect to next level on successfully completing 
+ * current level
+ */
 function openDoor() {
     if (positionX == 275 && positionY == 85) {
         let isGone = true;

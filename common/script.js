@@ -1,5 +1,8 @@
+/**
+ * Setting up an alternate definition for console.log 
+ * which will get called any time output is printed
+ */
 (function () {
-    var old = console.log;
     var logger = document.getElementById('output');
     console.log = function (message) {
         if (typeof message == 'object') {
@@ -10,9 +13,17 @@
     }
 })();
 
+/**
+ * Calling all the functions when the whole window gets loaded completely
+ */
 window.addEventListener('load', (event) => {
+    /**
+     * Instruction pop-up
+     */
     description();
-    var text = document.getElementById('editor');
+    /**
+     * Setting up the code editor
+     */
     editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
         mode: "python",
         lineNumbers: true,
@@ -25,12 +36,19 @@ window.addEventListener('load', (event) => {
         mode: 'python',
         scrollbarStyle: 'null',
     });
+    /**
+     * Autocompletion on any keypress
+     */
     editor.on('keypress', (cm) => {
         cm.showHint();
     });
+    /**
+     * Upload button to import code from a local file
+     */
     document.getElementById('uploadBtn').addEventListener('click', function (e) {
         $('#upload').trigger('click');
     });
+    
     document.getElementById('upload').addEventListener('change', function (e) {
         var fr = new FileReader();
         fr.onload = function () {

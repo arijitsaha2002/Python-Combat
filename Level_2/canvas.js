@@ -1,6 +1,14 @@
+/**
+ * Array storing type of coins
+ */
 var coins;
-var coinNumber;
+/**
+ * Store the input key given by user
+ */
 var sum;
+/**
+ * Refreshes the Arena
+ */
 function refresh() {
     coins = [1, 1, 1, 1, 1, 1, 1, 1]
     isDone = false;
@@ -9,13 +17,16 @@ function refresh() {
     sum = 0;
     myIterator = null;
     positionX = 25
-    coinNumber = 0
     positionY = 15
     drawMaze();
     canvasDraw.drawImage(rightMove, positionX - w / 2, positionY - h / 2, w, h);
     makerandom();
+
 }
 
+/**
+ * Assigns random values to coin array from 1 to 3
+ */
 function makerandom() {
     for (let i = 0; i < 8; i++) {
         coins[i] = Math.ceil(Math.random() * 3);
@@ -24,12 +35,20 @@ function makerandom() {
 }
 
 refresh();
+/**
+ * Instructions
+ */
 function description() {
     swal("Instructions", "Your task is again to get Mario to the door using those built-in functions but here is a twist. \n You need to pass an argument to the open_door() function to open the door. Your argument will be the sum of the values of coins. To make it easier we have provided a built-in function coinValue() to get the coinValue when you reach that coin.\n You can also upload code file from your local device.\n Hint: Store the sum of coinValues in a variable and then pass it as an argument");
 }
 
-
-function drawStar(i, X, Y) {
+/**
+ * Draws a coin
+ * @param {type of coin} i 
+ * @param {x position of coin} X 
+ * @param {Y position of coin} Y 
+ */
+function drawCoin(i, X, Y) {
     if (i == 1) {
         canvasDraw.drawImage(star, X - 10, Y - 5, 20, 10);
     }
@@ -40,7 +59,9 @@ function drawStar(i, X, Y) {
         canvasDraw.drawImage(document.getElementById("starB"), X - 10, Y - 5, 20, 10);
     }
 }
-
+/**
+ * Designs the Arena
+ */
 function drawMaze() {
     canvasDraw.drawImage(backgroundImg, 0, 0, 300, 150);
     canvasDraw.fillStyle = '#c3e8de';
@@ -55,17 +76,22 @@ function drawMaze() {
     canvasDraw.lineTo(0, 30);
     canvasDraw.closePath();
     canvasDraw.fill();
-    drawStar(coins[0], 75, 15);
-    drawStar(coins[1], 125, 15);
-    drawStar(coins[2], 125, 40);
-    drawStar(coins[3], 125, 65);
-    drawStar(coins[4], 125, 90);
-    drawStar(coins[5], 125, 115);
-    drawStar(coins[6], 175, 115);
-    drawStar(coins[7], 225, 115);
+    drawCoin(coins[0], 75, 15);
+    drawCoin(coins[1], 125, 15);
+    drawCoin(coins[2], 125, 40);
+    drawCoin(coins[3], 125, 65);
+    drawCoin(coins[4], 125, 90);
+    drawCoin(coins[5], 125, 115);
+    drawCoin(coins[6], 175, 115);
+    drawCoin(coins[7], 225, 115);
     canvasDraw.drawImage(door, 282, 117 - 17, 20, 30);
 }
 
+/**
+ * Moves Mario slowly
+ * and also restricts it 
+ * from stepping out of maze
+ */
 function iterator() {
     if (movesX[0] == null) {
         clearInterval(myIterator);
@@ -103,7 +129,6 @@ function iterator() {
                         setTimeout(outOfBoundary, 100);
                     }
                 }
-
             }
             else if (positionX == 175) {
                 if (positionY == 115) {
@@ -128,19 +153,27 @@ function iterator() {
     }
 }
 
-
+/**
+ * Clear the previous Mario image by pasting a rectangle on it
+ */
 function clear() {
     canvasDraw.clearRect(positionX - w / 2 - error, positionY - h / 2 - error, w + 2 * error, h + 2 * error);
 }
 
-
+/**
+ * Calls iterator in intervals
+ */
 function allMove() {
     drawMaze();
     canvasDraw.drawImage(rightMove, positionX - w / 2, positionY - h / 2, w, h);
     myIterator = setInterval(iterator, 30);
 }
 
-
+/**
+ * openDoor function which shows success and error pop ups
+ * and redirect to next level on successfully completing 
+ * current level
+ */
 function openDoor() {
     if (positionX == 275 && positionY == 115) {
         let result = 0;

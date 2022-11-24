@@ -100,7 +100,7 @@
     from browser import window , console
     import traceback
     doc = window.document
-
+    window.editor.setValue("# function move which we have\n# already called five times \n# we have also called open_door()\n# after calling move five times\n\ndef move(): # complete this function")
     def move_up():
         for i in range(25):
             window.movesX.append(0)
@@ -133,7 +133,7 @@
         window.drawMaze();
         window.refresh();
         try:
-            exec(window.editor.getValue())
+            exec(window.editor.getValue()+"\nfor i in range(5): move() \nopen_door()")
         except Exception as e :
             var = traceback.format_exc()
             print(var)

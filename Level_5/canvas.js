@@ -1,21 +1,26 @@
 refresh();
-var isDone = false;
-var isGone;
+/**
+ * Refreshes the Arena
+ */
 function refresh() {
     movesX = []
     movesY = []
     myIterator = null;
-    isGone = false;
     positionX = 25
     positionY = 137
     drawMaze();
     canvasDraw.drawImage(rightMove, positionX - w / 2, positionY - h / 2, w, h);
 }
-
+/**
+ * Instructions
+ */
 function description() {
-    swal("Instructions", "Some code snippets are used more than once in a code It's better to write them in a function and then use it. \n In this chapter, You are required to write a function analyzing the pattern in the maze and then call the function repeatedly.\n You can also upload code file from your local device.\n Hints: Functions in python are defined using def keyword. Use built-in functions with in your function.");
+    swal("Instructions", "Some code snippets are used more than once in a code It's better to write them in a function and then use it. \n In this chapter, You are required to complete the move function analyzing the pattern in the maze.\n You can also upload code file from your local device.\n Hints: Use built-in functions with in your function.");
 }
 
+/**
+ * Designs the Arena
+ */
 function drawMaze() {
     canvasDraw.drawImage(backgroundImg, 0, 0, 300, 150);
     canvasDraw.fillStyle = '#c3e8de';
@@ -56,6 +61,11 @@ function drawMaze() {
     canvasDraw.drawImage(door, 282, 0, 20, 25);
 }
 
+/**
+ * Moves Mario slowly
+ * and also restricts it 
+ * from stepping out of maze
+ */
 function iterator() {
     if (movesX[0] == null) {
         clearInterval(myIterator);
@@ -128,32 +138,32 @@ function iterator() {
     }
 }
 
-
+/**
+ * Clear the previous Mario image by pasting a rectangle on it
+ */
 function clear() {
     canvasDraw.clearRect(positionX - w / 2 - error, positionY - h / 2 - error, w + 2 * error, h + 2 * error);
 }
 
-
+/**
+ * Calls iterator in intervals
+ */
 function allMove() {
     myIterator = setInterval(iterator, 30);
 }
 
+/**
+ * openDoor function which shows success and error pop ups
+ * and redirect to next level on successfully completing 
+ * current level
+ */
 function openDoor() {
     if (positionX == 275 && positionY == 12) {
-        if (isGone) {
-            swal("Congratulations!", "You have successfully passed the chapter.").then(okay => {
-                if (okay) {
-                    window.location.replace("../welcome/play.html")
-                }
-            });
-        }
-        else {
-            swal("ERROR!", "You have not implemented a function").then(okay => {
-                if (okay) {
-                    refresh();
-                }
-            });
-        }
+        swal("Congratulations!", "You have successfully passed the chapter.").then(okay => {
+            if (okay) {
+                window.location.replace("../welcome/play.html")
+            }
+        });
     }
     else {
         swal("ERROR!", "You can't open the door!!").then(okay => {

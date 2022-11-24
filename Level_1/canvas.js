@@ -1,3 +1,6 @@
+/**
+ * Refreshes the Arena
+ */
 function refresh() {
     movesX = []
     movesY = []
@@ -8,9 +11,15 @@ function refresh() {
     canvasDraw.drawImage(rightMove, positionX - w / 2, positionY - h / 2, w, h);
 }
 refresh();
+/**
+ * Instructions
+ */
 function description() {
     swal("Instructions", "Hello Learners !!!, Welcome to Chapter 1.\n Your task is to get Mario to the Door using the built-in functions move_up(), move_down(), move_right() and move_left() and when you reach the door you need to call the open_door() function to pass the level.\n You can also upload code file from your local device.");
 }
+/**
+ * Designs the Arena
+ */
 function drawMaze() {
     canvasDraw.drawImage(backgroundImg, 0, 0, 300, 150);
     canvasDraw.fillStyle = '#c3e8de';
@@ -39,6 +48,11 @@ function drawMaze() {
     canvasDraw.drawImage(door, 282, 110 - 17, 20, 35);
 }
 
+/**
+ * Moves Mario slowly
+ * and also restricts it 
+ * from stepping out of maze
+ */
 function iterator() {
     if (movesX[0] == null) {
         clearInterval(myIterator);
@@ -105,16 +119,25 @@ function iterator() {
     }
 }
 
-
+/**
+ * Clear the previous Mario image by pasting a rectangle on it
+ */
 function clear() {
     canvasDraw.clearRect(positionX - w / 2 - error, positionY - h / 2 - error, w + 2 * error, h + 2 * error);
 }
 
-
+/**
+ * Calls iterator in intervals
+ */
 function allMove() {
     myIterator = setInterval(iterator, 30);
 }
 
+/**
+ * openDoor function which shows success and error pop ups
+ * and redirect to next level on successfully completing 
+ * current level
+ */
 function openDoor() {
     if (positionX == 275 && positionY == 110) {
         swal("Congratulations!", "You have successfully passed the chapter. Continue to the next chapter").then(okay => {

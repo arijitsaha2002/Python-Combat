@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="../codemirror/lib/codemirror.js"></script>
     <link rel="stylesheet" href="../codemirror/lib/codemirror.css">
@@ -105,6 +105,8 @@
 
     def isUp():
         return window.isUp
+    def isRight():
+        return window.isRight
     def move_up():
         for i in range(25):
             window.movesX.append(0)
