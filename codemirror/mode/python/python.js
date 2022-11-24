@@ -19,7 +19,7 @@
   var commonKeywords = ["as", "assert", "break", "class", "continue",
                         "def", "del", "elif", "else", "except", "finally",
                         "for", "from", "global", "if", "import",
-                        "lambda", "pass", "raise", "return","open_door()","isUp()","coinValue()",
+                        "lambda", "pass", "raise", "return","open_door()","isUp()","coinValue()","isRight()",
                         "try", "while", "with", "yield", "in", "move_up()", "move_down()","move_left()","move_right()"];
   var commonBuiltins = ["abs", "all", "any", "bin", "bool", "bytearray", "callable", "chr",
                         "classmethod", "compile", "complex", "delattr", "dict", "dir", "divmod",
