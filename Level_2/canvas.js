@@ -9,11 +9,13 @@ var sum;
 /**
  * Refreshes the Arena
  */
+var coinNumber ;
 function refresh() {
     coins = [1, 1, 1, 1, 1, 1, 1, 1]
     isDone = false;
     movesX = []
     movesY = []
+    coinNumber= 0;
     sum = 0;
     myIterator = null;
     positionX = 25
